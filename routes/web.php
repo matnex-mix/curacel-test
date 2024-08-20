@@ -1,13 +1,18 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Services\Batching\BatchingService;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('SubmitOrder');
-});
+})
+    ->name('submit_order');
+
+Route::post('/orders/batch', BatchingService::class)
+    ->name('batch_order');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
